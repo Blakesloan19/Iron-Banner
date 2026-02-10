@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Iron Banner</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #eee;
+    margin: 0;
+}
+header {
+    background: #222;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+#container {
+    padding: 20px;
+}
+.stats, .actions, .log {
+    background: #1c1c1c;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+.stats span {
+    display: inline-block;
+    width: 48%;
+    margin-bottom: 8px;
+}
+button {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    margin: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background: #666;
+}
+.log {
+    height: 180px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+.turn {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>IRON BANNER — Supreme Leader Mode</header>
+
+<div id="container">
+<div class="turn">Year: <span id="year">1</span></div>
+
+<div class="stats">
+    <span>💰 Treasury: $<span id="money">1000</span>B</span>
+    <span>🧍 Population: <span id="pop">50</span>M</span>
+    <span>😌 Happiness: <span id="happy">65</span>%</span>
+    <span>🪖 Military: <span id="military">50</span></span>
+    <span>🏭 Economy: <span id="economy">50</span></span>
+    <span>🌍 Reputation: <span id="rep">Neutral</span></span>
+</div>
+
+<div class="actions">
+    <button onclick="raiseTaxes()">Raise Taxes</button>
+    <button onclick="lowerTaxes()">Lower Taxes</button>
+    <button onclick="upgradeMilitary()">Upgrade Military</button>
+    <button onclick="passLaw()">Pass Law</button>
+    <button onclick="invade()">Invade Neighbor</button>
+    <button onclick="endTurn()">End Year</button>
+</div>
+
+<div class="log" id="log"></div>
+</div>
+
+<script>
+let year = 1;
+let money = 1000;
+let population = 50;
+let happiness = 65;
+let military = 50;
+let economy = 50;
+let reputation = "Neutral";
+
+function log(msg) {
+    const logDiv = document.getElementById("log");
+    logDiv.innerHTML += "• " + msg + "<br>";
+    logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+function updateUI() {
+    document.getElementById("year").innerText = year;
+    document.getElementById("money").innerText = money;
+    document.getElementById("pop").innerText = population;
+    document.getElementById("happy").innerText = happiness;
+    document.getElementById("military").innerText = military;
+    document.getElementById("economy").innerText = economy;
+    document.getElementById("rep").innerText = reputation;
+}
+
+function raiseTaxes() {
+    money += 100;
+    happiness -= 5;
+    log("Taxes raised.");
+    updateUI();
+}
+
+function lowerTaxes() {
+    money -= 80;
+    happiness += 6;
+    log("Taxes lowered.");
+    updateUI();
+}
+
+function u
